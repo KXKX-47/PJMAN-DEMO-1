@@ -1,0 +1,50 @@
+﻿@model PJMAN1_DEMO_.Models.User
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.2/css/bootstrap.min.css" integrity="sha384-y3tfxAZXuh4HwSYylfB+J125MxIs6mR5FOHamPBG064zB+AFeWH94NdvaCBm8qnd" crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="row justify-content-md-center">
+      <div class="col-md-4">
+          <div class="card">
+              <div class="card-header">
+                  <div class="card-title">Login</div>
+                  
+              </div>
+              <div class="card-body">
+                  @using (Html.BeginForm("Login", "Main", FormMethod.Post))
+                  {
+                      @Html.AntiForgeryToken()
+                      <div class="form-group">
+                          @Html.LabelFor(m => m.Email)
+                          @Html.TextBoxFor(m => m.Email, "", new { @class = "form-control", @placeholder = "Email" })
+                      </div>
+                      <div class="form-group">
+                          @Html.LabelFor(m => m.Password)
+                          @Html.TextBoxFor(m => m.Password, "", new { @class = "form-control", @placeholder = "Email" })
+                      </div>
+                      <div class="form-group">
+                          <input type="submit" name="submit" class="btn btn-primary" value="Login" />
+                          @ViewBag.Message
+                          @TempData["Error Message"]
+                      </div>
+                      
+                  }
+              </div>
+          </div>
+      </div>
+  </div>
+</body>

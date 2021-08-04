@@ -1,0 +1,107 @@
+﻿@*@model IEnumerable<PJMAN1_DEMO_.Models.Tasks>*@
+@using PJMAN1_DEMO_.Models
+@model ViewModel 
+
+@{
+    ViewBag.Title = "Task";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<h2>Task</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<body>
+     
+    <div class="container">
+        <h2>Kanban System</h2>
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse1">Requested</a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                    <table class="table">
+                        @foreach (var item in Model.Tasks)
+                        {
+                        <tr>
+                            <td>@Html.DisplayFor(modelItem => item.Task)</td>
+                            <td>@Html.ActionLink("Edit", "TaskEdit", new { id = item.TID }) |
+                                @Html.ActionLink("Details", "TaskEdit", new { id=item.TID  }) |
+                                @Html.ActionLink("Delete", "TaskEdit", new { id = item.TID })
+                            
+                            </td>
+                            
+                        </tr>
+                        }
+                    </table>
+                    @**<div class="panel-body">Task 1</div>*@
+                    @**<div class="panel-body">Task 2</div>*@
+                  
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="container">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse2">In Progress</a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <table class="table">
+                        @foreach (var item in Model.BTasks)
+                        {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Task)</td>
+                                <td>
+                                @Html.ActionLink("Edit", "TaskEdit", new { id = item.TID }) |
+                                @Html.ActionLink("Details", "TaskEdit", new { id = item.TID }) |
+                                @Html.ActionLink("Delete", "TaskEdit", new { id = item.TID })
+
+                            </td>
+
+                        </tr>
+                    }
+                    </table>
+                    @*<div class="panel-body">Task 1</div>
+        <div class="panel-body">Task 2</div>*@
+                </div>
+            </div>
+        </div>
+
+        
+    </div>
+
+    <div class="container">
+        <div class="panel-group">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" href="#collapse3">Completed</a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body">Task 1</div>
+                    <div class="panel-body">Task 2</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
